@@ -1,0 +1,21 @@
+---
+- name: first play
+  hosts: node1
+  become: yes
+  tasks:
+    - name: use file module
+      file:
+        path: /tmp/new-file2
+        state: touch 
+        mode: '0666'
+
+    - name: use file again
+      file: path=/tmp/new-file3 state=touch 
+
+    - name: Change file ownership, group and permissions
+      file:
+            path: /tmp/new-file4
+            mode: '0644'
+            state: touch
+      tags: new
+

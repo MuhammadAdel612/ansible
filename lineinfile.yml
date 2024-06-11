@@ -1,0 +1,16 @@
+---
+- hosts: node1
+  become: true 
+  tasks:
+    - lineinfile:
+        path: /tmp/test-ansible/inventory
+        regexp: '^hi' 
+        line: HI AGAIN
+    - lineinfile:
+        path: /tmp/test-ansible/new-test-ansible
+        line: it is a new file 
+        create: yes
+    - lineinfile:
+        path: /tmp/test-ansible/inventory
+        line: moustafa speaking form germany 
+        backup: yes

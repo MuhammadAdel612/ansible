@@ -1,0 +1,12 @@
+---
+- hosts: node1
+  become: yes
+  tasks:
+    - blockinfile:
+        path: /tmp/test-ansible/block
+        create: yes
+        block: |
+          free palastine
+          welcome to my file 
+          devops course
+          ansible track

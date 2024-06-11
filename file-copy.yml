@@ -1,0 +1,16 @@
+---
+- name: first play
+  hosts:  node1
+  become: true
+  tasks:
+    - name: create folder under /tmp
+      file: path=/tmp/test-ansible state=directory
+    - name: create file under /tmp/test-ansible
+      file: path=/tmp/test-ansible/ansible.txt state=touch
+    - name: copy file
+      copy: src=inv  dest=/tmp/test-ansible/inventory
+    - name: Copy using inline content
+      copy:
+        content: '# This file was moved to /etc/other.conf'
+        dest: /tmp/test-ansible/inventory
+

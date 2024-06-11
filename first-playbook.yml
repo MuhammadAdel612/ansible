@@ -1,0 +1,16 @@
+---
+- name: first play
+  become: yes
+  hosts: node1
+  tasks:
+    - name: execute ls command
+      command: ls /tmp
+
+
+
+- name: second play
+  become: yes
+  hosts: node1
+  tasks:
+    - name: execute shell module 
+      shell: echo "welcome again" >> /tmp/welcome
