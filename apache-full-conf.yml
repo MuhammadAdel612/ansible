@@ -1,0 +1,28 @@
+---
+- hosts: node1
+  become: yes
+  vars:
+     new_port: 8083
+  tasks:
+    - name: Install apache httpd  (state=present is optional)
+      apt:
+        name: apache2
+        state: present
+        update_cache: yes
+      tags: skip
+
+    - name: send template to apache2 service
+      template:
+        src: apache-ports.conf.j2
+        dest: /etc/apache2/ports.conf
+        backup: yes
+      notify: restart
+
+  handlers:
+    - name: restart apache2 service
+      systemd:
+        name: apache2 
+        state: restarted
+      listen: restart
+
+
